@@ -6,10 +6,18 @@ import '@stencil/router';
   styleUrl: 'my-app.css'
 })
 export class MyApp {
+  handleEvent = (event: MouseEvent) => {
+    console.log('MyApp.handleEvent', this, event)
+  }
+
   render() {
     return [
       <div class="page-header">
         <h1>Welcome to Stencil Starter</h1>
+        <button onClick={(event: MouseEvent) => this.handleEvent(event)}>
+          Does not work in SSR
+        </button>
+        <button onClick={this.handleEvent}>Does not work in SSR</button>
       </div>,
       <nav class="page-nav">
         <stencil-route-link url="/">Home</stencil-route-link>
